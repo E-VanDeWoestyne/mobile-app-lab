@@ -1,15 +1,13 @@
-import { ScrollView, View, Text } from "react-native";
+import { ScrollView, View, Text, StyleSheet } from "react-native";
 import vacationDestinations from "../constants/list_items";
 export default function Lab4() {
   return (
     <ScrollView>
       <Text>
-        {" "}
-        <h1>Choose your destinations</h1>
+        <Text>Choose your destinations</Text>
       </Text>
       {vacationDestinations.map((destination) => (
-        <View key={destination.id}>
-          <Text>{"\u2705"}</Text>
+        <View key={destination.id} style={styles.container}>
           <Text>{destination.location}</Text>
           <Text>{destination.price}</Text>
           <Text>{destination.average_yearly_temperature}</Text>
@@ -18,3 +16,14 @@ export default function Lab4() {
     </ScrollView>
   );
 }
+
+const styles = StyleSheet.create({
+    container : {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        borderColor: "black",
+        borderWidth: 1,
+        margin: 5,
+    }
+})
