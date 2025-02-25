@@ -45,14 +45,17 @@ export default function Lab4() {
             <Pressable onPress={() => handlePress(destination)}>
               {!isSelected && <Text style={styles.tick}>{"\u2b1c"}</Text>}
               {isSelected && <Text style={styles.tick}>{"\u2705"}</Text>}
+
+              <View style={styles.info}>
+                <Text style={styles.text}>
+                  Location: {destination.location}
+                </Text>
+                <Text style={styles.text}>Price: ${destination.price}</Text>
+                <Text style={styles.text}>
+                  Avg Temp: {destination.average_yearly_temperature}
+                </Text>
+              </View>
             </Pressable>
-            <View style={styles.info}>
-              <Text style={styles.text}>Location: {destination.location}</Text>
-              <Text style={styles.text}>Price: ${destination.price}</Text>
-              <Text style={styles.text}>
-                Avg Temp: {destination.average_yearly_temperature}
-              </Text>
-            </View>
           </View>
         );
       })}
