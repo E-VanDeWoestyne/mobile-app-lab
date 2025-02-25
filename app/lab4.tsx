@@ -27,7 +27,13 @@ export default function Lab4() {
       setSelectedDestinations([...selectedDestinations, destination]);
     }
   }
-
+  function totalCost() {
+    let total = 0;
+    selectedDestinations.forEach((destination) => {
+      total += destination.price;
+    });
+    return total;
+  }
   return (
     <ScrollView style={styles.scrollContainer}>
       <Text style={styles.header}>Choose your destinations</Text>
@@ -52,17 +58,8 @@ export default function Lab4() {
           </View>
         );
       })}
-      {/* <Text style={styles.header}>Selected destinations:</Text>
-      {selectedDestinations.map((destination) => (
-        <View key={destination.id} style={styles.selectedContainer}>
-          <Text style={styles.text}>Location: {destination.location}</Text>
-          <Text style={styles.text}>Price: ${destination.price}</Text>
-          <Text style={styles.text}>
-            Avg Temp: {destination.average_yearly_temperature}
-          </Text>
-        </View>
-      ))}
-   */}{" "}
+
+      <Text style={styles.header}>Total cost: ${totalCost()}</Text>
     </ScrollView>
   );
 }
