@@ -1,20 +1,68 @@
-import { ScrollView, View, Text, Pressable } from "react-native";
-import { useState } from "react";
-import { StyleSheet } from "react-native";
+import React, { useState } from "react";
+import { ScrollView, View, Text, Pressable, StyleSheet } from "react-native";
 import vacationDestinations from "../constants/list_items";
+
+// Define the interface for each vacation destination.
+interface VacationDestination {
+  id: number;
+  location: string;
+  price: number; // numeric value for prices
+  average_yearly_temperature: string;
+}
+
 export default function Lab4() {
-  const [checked, setChecked] = useState(false);
+  // Use state to store the array of selected destinations.
+  const [selectedDestinations, setSelectedDestinations] = useState<
+    VacationDestination[]
+  >([]);
+
+  // Toggle the selection of a destination.
+  function handlePress(destination: VacationDestination) {
+    const isSelected = selectedDestinations.some(
+      (item) => item.id === destination.id
+    );
+    if (isSelected) {
+      // Remove the destination if it's already selected.
+      setSelectedDestinations(
+        selectedDestinations.filter((item) => item.id !== destination.id)
+      );
+    } else {
+      // Add the destination to the selection.
+      setSelectedDestinations([...selectedDestinations, destination]);
+    }
+  }
+
   return (
-    <ScrollView>
-      <Text> Choose your destinations</Text>
-      {vacationDestinations.map((destination) => (
-        <View key={destination.id}>
-          <Pressable onPress={() => setChecked(!checked)}>
-            <Text>{checked ? "\u2705" : "\u2B1C"}</Text>
-          </Pressable>
-          <Text>{destination.location}</Text>
-          <Text>{destination.price}</Text>
-          <Text>{destination.average_yearly_temperature}</Text>
+    <ScrollView style={styles.scrollContainer}>
+      <Text style={styles.header}>Choose your destinations</Text>
+      {vacationDestinations.map((destination) => {
+        const isSelected = selectedDestinations.some(
+          (item) => item.id === destination.id
+        );
+        return (
+          <View key={destination.id} style={styles.destinationContainer}>
+            <Pressable onPress={() => handlePress(destination)}>
+              {/* Show tick only if the destination is NOT selected */}
+              {!isSelected && <Text style={styles.tick}>{"\u2705"}</Text>}
+            </Pressable>
+            <View style={styles.info}>
+              <Text style={styles.text}>Location: {destination.location}</Text>
+              <Text style={styles.text}>Price: ${destination.price}</Text>
+              <Text style={styles.text}>
+                Avg Temp: {destination.average_yearly_temperature}
+              </Text>
+            </View>
+          </View>
+        );
+      })}
+      <Text style={styles.header}>Selected destinations:</Text>
+      {selectedDestinations.map((destination) => (
+        <View key={destination.id} style={styles.selectedContainer}>
+          <Text style={styles.text}>Location: {destination.location}</Text>
+          <Text style={styles.text}>Price: ${destination.price}</Text>
+          <Text style={styles.text}>
+            Avg Temp: {destination.average_yearly_temperature}
+          </Text>
         </View>
       ))}
     </ScrollView>
@@ -22,12 +70,39 @@ export default function Lab4() {
 }
 
 const styles = StyleSheet.create({
-  container: {
+  scrollContainer: {
+    padding: 16,
+  },
+  header: {
+    fontSize: 20,
+    fontWeight: "bold",
+    marginBottom: 16,
+  },
+  destinationContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    padding: 12,
+    marginBottom: 12,
+    borderWidth: 1,
+    borderColor: "#ccc",
+    borderRadius: 8,
+  },
+  tick: {
+    fontSize: 20,
+    marginRight: 12,
+  },
+  info: {
     flex: 1,
+  },
+  text: {
+    fontSize: 16,
+  },
+  selectedContainer: {
     justifyContent: "center",
     alignItems: "center",
     borderColor: "black",
     borderWidth: 1,
     margin: 5,
+    padding: 8,
   },
 });
