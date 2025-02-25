@@ -11,23 +11,19 @@ interface VacationDestination {
 }
 
 export default function Lab4() {
-  // Use state to store the array of selected destinations.
   const [selectedDestinations, setSelectedDestinations] = useState<
     VacationDestination[]
   >([]);
 
-  // Toggle the selection of a destination.
   function handlePress(destination: VacationDestination) {
     const isSelected = selectedDestinations.some(
       (item) => item.id === destination.id
     );
     if (isSelected) {
-      // Remove the destination if it's already selected.
       setSelectedDestinations(
         selectedDestinations.filter((item) => item.id !== destination.id)
       );
     } else {
-      // Add the destination to the selection.
       setSelectedDestinations([...selectedDestinations, destination]);
     }
   }
@@ -43,7 +39,8 @@ export default function Lab4() {
           <View key={destination.id} style={styles.destinationContainer}>
             <Pressable onPress={() => handlePress(destination)}>
               {/* Show tick only if the destination is NOT selected */}
-              {!isSelected && <Text style={styles.tick}>{"\u2705"}</Text>}
+              {!isSelected && <Text style={styles.tick}>{"\u2b1c"}</Text>}
+              {isSelected && <Text style={styles.tick}>{"\u2705"}</Text>}
             </Pressable>
             <View style={styles.info}>
               <Text style={styles.text}>Location: {destination.location}</Text>
@@ -55,7 +52,7 @@ export default function Lab4() {
           </View>
         );
       })}
-      <Text style={styles.header}>Selected destinations:</Text>
+      {/* <Text style={styles.header}>Selected destinations:</Text>
       {selectedDestinations.map((destination) => (
         <View key={destination.id} style={styles.selectedContainer}>
           <Text style={styles.text}>Location: {destination.location}</Text>
@@ -65,6 +62,7 @@ export default function Lab4() {
           </Text>
         </View>
       ))}
+   */}{" "}
     </ScrollView>
   );
 }
