@@ -1,15 +1,16 @@
-import { ScrollView, View, Text } from "react-native";
+import { ScrollView, View, Text, Pressable } from "react-native";
+import { useState } from "react";
 import vacationDestinations from "../constants/list_items";
 export default function Lab4() {
+  const [checked, setChecked] = useState(false);
   return (
     <ScrollView>
-      <Text>
-        {" "}
-        <h1>Choose your destinations</h1>
-      </Text>
+      <Text> Choose your destinations</Text>
       {vacationDestinations.map((destination) => (
         <View key={destination.id}>
-          <Text>{"\u2705"}</Text>
+          <Pressable onPress={() => setChecked(!checked)}>
+            <Text>{checked ? "\u2705" : "\u2B1C"}</Text>
+          </Pressable>
           <Text>{destination.location}</Text>
           <Text>{destination.price}</Text>
           <Text>{destination.average_yearly_temperature}</Text>
