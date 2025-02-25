@@ -4,6 +4,9 @@ import { View, Text, StyleSheet } from "react-native";
 export default function App() {
   return (
     <View style={styles.container}>
+      <Link href="/lab3" style={styles.link}>
+        <Text style={styles.linkText}>Lab 3</Text>
+      </Link>
       <Link href="/lab4" style={styles.link}>
         <Text style={styles.linkText}>Lab 4</Text>
       </Link>
@@ -22,6 +25,7 @@ const styles = StyleSheet.create({
     padding: 10,
     backgroundColor: "#007AFF",
     borderRadius: 5,
+    margin: 5,
   },
   linkText: {
     color: "white",

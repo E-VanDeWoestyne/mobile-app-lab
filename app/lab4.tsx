@@ -2,11 +2,10 @@ import React, { useState } from "react";
 import { ScrollView, View, Text, Pressable, StyleSheet } from "react-native";
 import vacationDestinations from "../constants/list_items";
 
-// Define the interface for each vacation destination.
 interface VacationDestination {
   id: number;
   location: string;
-  price: number; // numeric value for prices
+  price: number;
   average_yearly_temperature: string;
 }
 
@@ -44,7 +43,6 @@ export default function Lab4() {
         return (
           <View key={destination.id} style={styles.destinationContainer}>
             <Pressable onPress={() => handlePress(destination)}>
-              {/* Show tick only if the destination is NOT selected */}
               {!isSelected && <Text style={styles.tick}>{"\u2b1c"}</Text>}
               {isSelected && <Text style={styles.tick}>{"\u2705"}</Text>}
             </Pressable>
