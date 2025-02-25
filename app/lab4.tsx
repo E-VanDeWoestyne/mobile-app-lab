@@ -1,5 +1,6 @@
 import { ScrollView, View, Text, Pressable } from "react-native";
 import { useState } from "react";
+import { StyleSheet } from "react-native";
 import vacationDestinations from "../constants/list_items";
 export default function Lab4() {
   const [checked, setChecked] = useState(false);
