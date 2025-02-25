@@ -41,8 +41,8 @@ export default function Lab4() {
           (item) => item.id === destination.id
         );
         return (
-          <View key={destination.id} style={styles.destinationContainer}>
-            <Pressable onPress={() => handlePress(destination)}>
+          <Pressable onPress={() => handlePress(destination)}>
+            <View key={destination.id} style={styles.destinationContainer}>
               {!isSelected && <Text style={styles.tick}>{"\u2b1c"}</Text>}
               {isSelected && <Text style={styles.tick}>{"\u2705"}</Text>}
 
@@ -55,8 +55,8 @@ export default function Lab4() {
                   Avg Temp: {destination.average_yearly_temperature}
                 </Text>
               </View>
-            </Pressable>
-          </View>
+            </View>
+          </Pressable>
         );
       })}
 
