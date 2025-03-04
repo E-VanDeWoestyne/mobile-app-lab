@@ -7,18 +7,12 @@ export default function Lab5() {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      {/* Header */}
-      <Text style={styles.header}>Lab 5 - API Toggle</Text>
-
-      {/* API Response Display */}
       {display && (
-        <View style={styles.responseContainer}>
-          <Text style={styles.label}>API Response:</Text>
+        <View>
           <CallAPI />
         </View>
       )}
 
-      {/* Toggle Button */}
       <Pressable style={styles.button} onPress={() => setDisplay(!display)}>
         <Text style={styles.buttonText}>
           {display ? "Hide API Response" : "Show API Response"}
