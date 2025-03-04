@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { View, Button, Text, StyleSheet } from "react-native";
 
-export default function callAPI() {
+export default function CallAPI() {
   const [response, setResponse] = useState(null);
   useEffect(() => {
     const fetchData = async () => {
@@ -11,7 +11,7 @@ export default function callAPI() {
           "https://jsonplaceholder.typicode.com/posts/1"
         );
         setResponse(await response.json());
-        console.log(setResponse);
+        console.log(response);
       } catch (error) {
         console.error(error);
       }
@@ -23,7 +23,7 @@ export default function callAPI() {
   return (
     <View style={styles.container}>
       <Button title="Call API" onPress={() => console.log(response)} />
-      <Text>{response}</Text>
+      <Text>{response ? JSON.stringify(response, null, 2) : "Loading..."}</Text>
     </View>
   );
 }
