@@ -6,7 +6,9 @@ export default function callAPI() {
   const [response, setResponse] = useState(null);
   useEffect(async () => {
     try {
-      let response = await fetch("https://jsonplaceholder.typicode.com/posts");
+      let response = await fetch(
+        "https://jsonplaceholder.typicode.com/posts/1"
+      );
       let json = await response.json();
       console.log(json);
     } catch (error) {
