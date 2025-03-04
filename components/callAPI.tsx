@@ -22,7 +22,6 @@ export default function CallAPI() {
 
   return (
     <View style={styles.container}>
-      <Button title="Call API" onPress={() => console.log(response)} />
       <Text>{response ? JSON.stringify(response, null, 2) : "Loading..."}</Text>
     </View>
   );
